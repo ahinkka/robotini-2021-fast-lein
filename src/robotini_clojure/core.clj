@@ -9,7 +9,7 @@
 (def simulator-ip "127.0.0.1")
 (def simulator-port 11000)
 (def team-id "thicci")
-(def team-name "Thicci Clovalainen")
+(def team-name "F@$T L41N")
 (def graphics? true)
 
 (defn connect
