@@ -8,8 +8,7 @@
 
 (def simulator-ip "127.0.0.1")
 (def simulator-port 11000)
-(def team-id "fast-lein")
-(def team-name "F@$T L41N")
+(def team-name "Fast lein")
 (def graphics? true)
 
 (defn connect
@@ -36,7 +35,7 @@
     image-bytes))
 
 (defn make-label
-  []
+  [team-id]
   (let [frame (JFrame. team-id)
         pane (.getContentPane frame)
         label (JLabel.)]
@@ -84,8 +83,12 @@
 (defn main
   []
   (println "Starting")
-  (let [[in out] (connect simulator-ip simulator-port)
-        label (when graphics? (make-label))]
+  (let [team-id (or (System/getenv "teamid")
+                    (do
+                      (println "No teamid env var set, defaulting to \"fast-lein\"")
+                      "fast-lein"))
+        [in out] (connect simulator-ip simulator-port)
+        label (when graphics? (make-label team-id))]
     (send-json-data out {"teamId" team-id "name" team-name})
     (while true
       (let [buffered-image (-> in get-image-bytes make-image)
