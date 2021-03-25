@@ -8,7 +8,7 @@
 
 (def simulator-ip "127.0.0.1")
 (def simulator-port 11000)
-(def team-id "thicci")
+(def team-id "fast-lein")
 (def team-name "F@$T L41N")
 (def graphics? true)
 
